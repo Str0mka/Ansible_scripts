@@ -1,0 +1,4 @@
+import base64
+encoded_data = base64(32 bytes random)
+print("Encoded text with base 64 is")
+print(encoded_data)
