@@ -1,0 +1,21 @@
+#Замена строки в файле
+ - name: Меняем строку в конфиге аксепторов
+   hosts:
+       - all
+   serial:
+       - 10
+   gather_facts: no
+   tasks: 
+   - name: Находим строку с параметром и добавляем новую строку
+     lineinfile: dest=/dir/file #файл в котором заменяем
+                 regexp='line_in_file' #строка которую заменяем
+                 insertbefore='line_in_file' #указываем строку после которой вставить новую, так можно использовать переменные из inventory файла {{variable_in_inv}}
+                 line='line_in_file_change' #указываем измененную строку
+                 
+   - name: Удаляем старую строку
+     lineinfile: dest=/dir/file #файл в котором заменяем
+                 regexp='line_in_file' #строка которую удаляем
+                 state=absent #удаление
+
+#     when:
+#       - variable is defined/undefined   #Конструкцию можно использовать если требуется исключить или наоборот деплоить по тем хостам в которых в inventory файле содержится/не содержится некоторая переменная

@@ -1,0 +1,17 @@
+#вывод конкретной строки из файла в вывод Ansible. Можно использовать для проверки на совпадение строк
+---
+ - name: Проверяем статус Facestream на серверах
+   hosts:
+       - all
+   gather_facts: yes
+
+   tasks:
+    - name: Создание переменной из строки файла
+      shell: "grep line_in_file /dir/file"
+      args:
+        executable: /bin/bash
+      register: status_result
+
+    - name: view status
+      debug: var=status_result.stdout_lines
+

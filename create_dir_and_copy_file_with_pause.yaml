@@ -1,0 +1,28 @@
+# Создание папки и копирование файлов через паузу
+
+---
+- name: создание папки и копирование файлов 
+  hosts:
+     - all
+  serial:
+      - 15
+  gather_facts: yes
+  tasks:
+
+  - name: создание папки
+    file:
+      path=/dir/dir #Путь создаваемой директории на удаленном хосте
+      state=directory
+      
+    - name: Pause for check status
+      pause:
+        minutes: 1 #Можно использовать также seconds/hours
+
+  - name: Копируем файл на удаленный хост
+    copy:
+      src: '/dir/file' #копируемый файл на хосте с Ansible
+      dest: /dir/dir #Директория куда копируем на удаленном сервере
+
+
+
+
