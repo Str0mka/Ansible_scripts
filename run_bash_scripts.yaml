@@ -1,0 +1,21 @@
+# Добавлеие прав а исполнение + запуск bash скрипта
+
+---
+- name: Запуск скриптов и команд
+  hosts:
+       - all
+  serial:
+      - 10
+  gather_facts: yes
+  tasks:
+
+  - name: Сделать исполняемым скрипт обновления
+    shell: "chmod +x /dir/script.sh"
+    args:
+       executable: /bin/bash
+
+  - name: Запуск скрипта по изменению ВД
+    shell: "cd /dir && ./script.sh"
+    args:
+       executable: /bin/bash
+

@@ -1,0 +1,16 @@
+# Включение сервиса
+
+---
+- name: Копирование файлов для обновления Luna 5 + остановка томката + создание дампа настроек facestream4
+  hosts:
+       - all
+  serial:
+      - 5
+  gather_facts: yes
+  tasks:
+
+  - name: Включаем сервиc
+    service:
+      name: name_of_service
+      state: started #Так же можно использовать stopped/restarted
+

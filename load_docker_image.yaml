@@ -1,0 +1,18 @@
+# Добавление image в Docker и запуск контейнеров
+
+---
+- name: add image at docker
+  hosts:
+      - all
+  serial:
+      - 25
+  gather_facts: yes
+  tasks:
+
+  - name: load container on host
+    docker_image:
+      name: name
+      load_path: /dir/imagename.dockerimage
+      state: present
+      source: load
+
